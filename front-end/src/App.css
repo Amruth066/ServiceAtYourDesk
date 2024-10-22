@@ -1,54 +1,30 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.title-2{
   display: flex;
-  flex-direction: column;
+  justify-content: space-evenly;
+  width: 50%;
+  height: 100%;
+  flex-direction: row;
   align-items: center;
+}
+
+.title-1{
+  height: 100%;
+  width: 50%;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-*{
-  margin: 0;
-  font-family: Arial;
-  border:border-box;
-}
-
 .navbar{
-  height: 60px;
-  background-color: #0F1111;
-  color: white;
+  height: 70px;
+  background-color: white;
+  color: black;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  border-bottom: 1px solid black;
 }
 .logo{
   height: 50px;
@@ -151,9 +127,9 @@
 }
 
 .hero-section{
-  height: 350px;
-  background-size: cover;
-  background-image: url("./assets/images/hero_image.jpg");
+  height: 650px;
+  /* background-size: cover; */
+  /* background-image: url("./assets/images/hero_image.jpg"); */
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -169,12 +145,12 @@
   font-size: 0.85rem;
   position: relative;
   width: 80%;
-  margin-bottom: 25px;
+  margin-bottom: 25px; 
 }
 .hero-message a{
   color: #007185;
 }
-.shop-section{
+.service-section{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;

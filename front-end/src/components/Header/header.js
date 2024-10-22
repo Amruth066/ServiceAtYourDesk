@@ -3,17 +3,35 @@ import React from 'react';
 const Header = () => (
   <header>
     <div className="navbar">
-      <div className="nav-logo">
-        <div className="logo"></div>
+      {/* <div className="nav-logo">
+        <div className="logo">ServiceAtYourDesk</div>
+      </div> */}
+      <div className='title-1'>
+        <div className='title'>ServiceAtYourDesk</div>
       </div>
-      <div className="nav-address border">
+      <div className='title-2'>
+        <div className='services'>
+          <a href='#'>Services</a>
+        </div>
+        <div className='loginsignup'>
+          <a href='#'>Sign up / Log in</a>
+        </div>
+        <div className='BecomeSP'>
+          <a href="#">
+            <button>Become Service Provider
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+      {/* <div className="nav-address border">
         <p className="address-first">Deliver to</p>
         <div className="add-icon">
           <i className="fa-solid fa-location-dot"></i>
           <p className="address-second">India</p>
         </div>
-      </div>
-      <div className="nav-search">
+      </div> */}
+      {/* <div className="nav-search">
         <select className="search-select">
           <option>All</option>
         </select>
@@ -21,8 +39,8 @@ const Header = () => (
         <div className="search-icon">
           <i className="fa-solid fa-magnifying-glass"></i>
         </div>
-      </div>
-      <div className="nav-signin border">
+      </div> */}
+      {/* <div className="nav-signin border">
         <p className="nav-first">Hello, sign in</p>
         <p className="nav-second">Account & list</p>
       </div>
@@ -34,8 +52,8 @@ const Header = () => (
         <i className="fa-solid fa-cart-shopping"></i>
         Cart
       </div>
-    </div>
-    <div className="panel">
+    </div> */}
+    {/* <div className="panel">
       <div className="panel-all">
         <i className="fa-solid fa-bars"></i>
         ALL
@@ -48,7 +66,7 @@ const Header = () => (
         <p>Sell</p>
       </div>
       <div className="panel-details">Shop deals in Electronics</div>
-    </div>
+    </div> */}
   </header>
 );
 

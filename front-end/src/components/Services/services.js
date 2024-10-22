@@ -1,8 +1,8 @@
 import React from 'react';
 
-const ShopSection = () => (
-  <div className="shop-section">
-    {[...Array(8)].map((_, index) => (
+const Services = () => (
+  <div className="service-section">
+    {[...Array(12)].map((_, index) => (
       <div key={index} className={`box${(index % 4) + 1} box`}>
         <div className="box-content">
           <h2>Service {index + 1}</h2>
@@ -14,4 +14,4 @@ const ShopSection = () => (
   </div>
 );
 
-export default ShopSection;
+export default Services;
