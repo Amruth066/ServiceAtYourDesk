@@ -48,7 +48,7 @@ const ServiceProviders = ({ service }) => {
                     <h2>{provider}</h2>
                     <div
                         className="box-img"
-                        style={{ backgroundImage: `url('provider${index + 1}_image.jpg')` }} // Replace with actual images if needed
+                        style={{ backgroundImage: `url('provider${index + 1}_image.jpg')` }} 
                     ></div>
                     <p onClick={()=>handleMoreDetails(provider)}>More details about {provider}</p>
                     </div>

@@ -2,8 +2,9 @@ import React from 'react';
 
 const Hero = () => (
     <div className="hero-message">
-        You are on workat yoy.com. You can also shop Amazon India for millions of products with fast local delivery.
-        <a href="#">Click here to go to amazon.in</a>
+              Welcome to Work at Your Will! Whether you need plumbing, electrical repairs, or cleaning services, we’ve got the right professionals for you. 
+      Choose from our list of trusted service providers and book a slot that fits your schedule.
+
     </div>
 );
 

@@ -27,6 +27,7 @@ const ServiceProviderDetails = ({ provider }) => {
   };
 
   return (
+    <>
     <div className="provider-details">
       <h2>Details for {provider.name}</h2>
       <div className="provider-info">
@@ -59,6 +60,9 @@ const ServiceProviderDetails = ({ provider }) => {
         </div>
       )}
     </div>
+    <button onClick={() => window.location.reload()}>Go Back to Services</button>
+
+    </>
   );
 };
 
