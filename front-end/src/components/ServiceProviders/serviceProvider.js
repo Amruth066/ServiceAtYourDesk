@@ -17,9 +17,9 @@ const ServiceProvider = ({ service }) => {
   };
 
   return (
-    <div className="serviceProvider-section">
+    <div className="serviceProvider">
       <h2>Service Providers for {service}</h2>
-      <div className="provider-list">
+      <div className="serviceProvider-section">
         {providers[service]?.map((provider, index) => (
           <div key={index} className={`box${(index % 4) + 1} box`}>
             <div className="box-content">
