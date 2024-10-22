@@ -18,6 +18,8 @@ const ServiceProviders = ({ service }) => {
         Landscaping: ['Landscaper A', 'Landscaper B', 'Landscaper C'],
     };
 
+
+
     const handleMoreDetails=(provider)=>{
         setSelectedProvider(provider);
     }

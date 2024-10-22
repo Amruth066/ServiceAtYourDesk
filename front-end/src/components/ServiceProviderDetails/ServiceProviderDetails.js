@@ -21,6 +21,8 @@ const ServiceProviderDetails = ({ provider }) => {
     if (selectedSlot) {
       setBookingConfirmed(true);
       alert(`Booking confirmed for ${provider.name} at ${selectedSlot}`);
+      window.location.reload()
+      
     } else {
       alert('Please select a time slot');
     }
@@ -60,7 +62,6 @@ const ServiceProviderDetails = ({ provider }) => {
         </div>
       )}
     </div>
-    <button onClick={() => window.location.reload()}>Go Back to Services</button>
 
     </>
   );

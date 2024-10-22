@@ -13,6 +13,9 @@ const Header = () => (
         <div className='services'>
           <a href='#'>Services</a>
         </div>
+        <div className='bookings'>
+          <a href='#'>My Bookings</a>
+        </div>
         <div className='loginsignup'>
           <a href='#'>Sign up / Log in</a>
         </div>
