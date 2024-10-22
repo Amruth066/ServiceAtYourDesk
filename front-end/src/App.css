@@ -133,6 +133,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  background-color: #e2e7e6;
 
 }
 .hero-message{
@@ -151,6 +152,13 @@
   color: #007185;
 }
 .service-section{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  background-color: #e2e7e6;
+}
+
+.serviceProvider-section{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
