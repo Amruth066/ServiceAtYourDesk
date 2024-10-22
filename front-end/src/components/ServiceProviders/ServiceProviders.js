@@ -4,7 +4,7 @@ const ServiceProviders = ({ service }) => {
     const [selectedProvider,setSelectedProvider] = useState(null);
 
     const providers = {
-        Plumbing: ['Plumber A', 'Plumber B', 'Plumber C'],
+        Plumbing: ['Plumber A', 'Plumber B', 'Plumber C','Plumber D', 'Plumber E', 'Plumber F','Plumber G'],
         Electrician: ['Electrician A', 'Electrician B', 'Electrician C'],
         Cleaning: ['Cleaner A', 'Cleaner B', 'Cleaner C'],
         Gardening: ['Gardener A', 'Gardener B', 'Gardener C'],
