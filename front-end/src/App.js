@@ -1,26 +1,30 @@
+import React, { useState } from 'react';
 import './App.css';
-import Header from './components/Header/header'
-import Services from './components/Services/services';
-import Hero from './components/Hero/hero';
-import Footer from './components/Footer/footer';
-import ServiceProvider from './components/ServiceProviders/serviceProvider';
-import { useState } from 'react';
+import Header from './components/Header/Header';
+import Services from './components/Services/Services';
+import Hero from './components/Hero/Hero';
+import Footer from './components/Footer/Footer';
+import ServiceProvider from './components/ServiceProviders/ServiceProviders';
+
 function App() {
-  const [selectedService,setSelectedService] = useState(null);
-  
-  const handleServiceSelect=(serviceName)=>{
-    setSelectedService(serviceName);
-  }
+  const [selectedService, setSelectedService] = useState(null);
+
+  const handleServiceSelect = (service) => {
+    setSelectedService(service);  // This sets the service when selected
+  };
+
+  const handleBackToServices = () => {
+    setSelectedService(null);  // This resets the selected service to go back
+  };
+
   return (
     <div className="App">
       <Header />
-      {!selectedService?(
-        <>
-          <Hero/>
-          <Services onServiceSelect={handleServiceSelect} />
-        </>
-      ):(
-        <ServiceProvider service={selectedService}/>
+      <Hero />
+      {!selectedService ? (
+        <Services onServiceSelect={handleServiceSelect} />  
+      ) : (
+        <ServiceProvider service={selectedService} goBack={handleBackToServices} />
       )}
       <Footer />
     </div>

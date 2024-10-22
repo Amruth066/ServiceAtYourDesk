@@ -1,0 +1,55 @@
+.provider-details {
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    width: 300px;
+    margin: 0 auto;
+  }
+  
+  .provider-info p {
+    margin: 5px 0;
+  }
+  
+  .previous-work ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .previous-work li {
+    background-color: #f0f0f0;
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  .booking-section {
+    margin-top: 20px;
+  }
+  
+  .booking-section select {
+    padding: 5px;
+    margin-right: 10px;
+  }
+  
+  button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #218838;
+  }
+  
+  .confirmation-message {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+  }
+  
