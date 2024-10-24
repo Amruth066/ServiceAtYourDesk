@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './ServiceProviderDetails.css';
+import { useNavigate } from 'react-router-dom';
 
 const ServiceProviderDetails = ({ provider }) => {
+  const navigate = useNavigate();
   const [selectedSlot, setSelectedSlot] = useState('');
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
 
@@ -21,8 +23,7 @@ const ServiceProviderDetails = ({ provider }) => {
     if (selectedSlot) {
       setBookingConfirmed(true);
       alert(`Booking confirmed for ${provider.name} at ${selectedSlot}`);
-      window.location.reload()
-      
+      navigate('/');
     } else {
       alert('Please select a time slot');
     }

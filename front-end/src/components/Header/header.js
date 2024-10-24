@@ -14,13 +14,13 @@ const Header = () => (
           <a href='services'>Services</a>
         </div>
         <div className='bookings'>
-          <a href='#'>My Bookings</a>
+          <a href='myBookings'>My Bookings</a>
         </div>
         <div className='loginsignup'>
-          <a href='#'>Sign up / Log in</a>
+          <a href='Login'>Sign up / Log in</a>
         </div>
         <div className='BecomeSP'>
-          <a href="#">
+          <a href="becomesp">
             <button>Become Service Provider
             </button>
           </a>

@@ -7,6 +7,9 @@ import Hero from './components/Hero/Hero';
 import Footer from './components/Footer/Footer';
 import ServiceProvider from './components/ServiceProviders/ServiceProviders';
 import ServiceProviderDetails from './components/ServiceProviderDetails/ServiceProviderDetails';
+import Bookings from './components/Bookings/bookings';
+import Login from './components/Login/login';
+import Signup from './components/Signup/signup';
 
 function App() {
   const [selectedService, setSelectedService] = useState(null);
@@ -17,7 +20,7 @@ function App() {
 
   const handleBackToServices = () => {
     setSelectedService(null); 
-  };
+  }
 
   return (
     <Router>
@@ -25,6 +28,9 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Hero />} />
+          <Route path="/Login" element={<Login/>}/>
+          <Route path="/Signup" element={<Signup/>}/>
+          <Route path="/myBookings" element={<Bookings/>} />
           <Route path="/services" element={<Services onServiceSelect={handleServiceSelect} />} />
           <Route path="/services/service-provider" element={<ServiceProvider service={selectedService} />} />
           <Route path="/service-provider-details" element={<ServiceProviderDetails />} />
