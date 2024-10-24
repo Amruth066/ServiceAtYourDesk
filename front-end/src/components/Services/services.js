@@ -1,7 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Services = ({ onServiceSelect }) => {
-  // Dummy data for services
+  const navigate = useNavigate();
   const services = [
     { id: 1, name: 'Plumbing', image: 'plumbing.jpg' },
     { id: 2, name: 'Electrician', image: 'electrician.jpg' },
@@ -17,6 +18,11 @@ const Services = ({ onServiceSelect }) => {
     { id: 12, name: 'Landscaping', image: 'landscaping.jpg' },
   ];
 
+  const handleServiceClick=(service)=>{
+    onServiceSelect(service.name);
+    navigate('/services/service-provider')
+  }
+
   return (
     <div className="service-section">
       {services.map((service) => (
@@ -27,7 +33,7 @@ const Services = ({ onServiceSelect }) => {
               className="box-img"
               style={{ backgroundImage: `url(${service.image})` }}
             ></div>
-            <button onClick={() => onServiceSelect(service.name)}>
+            <button onClick={() => handleServiceClick(service)}>
               See Providers
             </button>
           </div>
