@@ -20,7 +20,7 @@ const Header = () => (
           <a href='Login'>Sign up / Log in</a>
         </div>
         <div className='BecomeSP'>
-          <a href="becomesp">
+          <a href="becomeSp">
             <button>Become Service Provider
             </button>
           </a>

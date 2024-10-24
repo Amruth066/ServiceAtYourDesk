@@ -10,6 +10,7 @@ import ServiceProviderDetails from './components/ServiceProviderDetails/ServiceP
 import Bookings from './components/Bookings/bookings';
 import Login from './components/Login/login';
 import Signup from './components/Signup/signup';
+import becomeSp  from './components/BecomeSP/becomeSp';
 
 function App() {
   const [selectedService, setSelectedService] = useState(null);
@@ -30,6 +31,7 @@ function App() {
           <Route path="/" element={<Hero />} />
           <Route path="/Login" element={<Login/>}/>
           <Route path="/Signup" element={<Signup/>}/>
+          <Route path="/becomeSp" element={<becomeSp/>}/>
           <Route path="/myBookings" element={<Bookings/>} />
           <Route path="/services" element={<Services onServiceSelect={handleServiceSelect} />} />
           <Route path="/services/service-provider" element={<ServiceProvider service={selectedService} />} />
