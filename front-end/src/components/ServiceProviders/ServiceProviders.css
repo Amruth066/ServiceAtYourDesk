@@ -1,0 +1,72 @@
+.service-providers-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 16px;
+  }
+  .service-providers-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  .text-primary {
+    color: #4F46E5;
+  }
+  .back-button {
+    background: none;
+    border: none;
+    color: #374151;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  .providers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .provider-card {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+  }
+  .provider-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  .provider-info {
+    display: flex;
+    margin-bottom: 1rem;
+  }
+  .provider-image {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .provider-details {
+    margin-left: 1rem;
+  }
+  .provider-name {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  .provider-title,
+  .provider-rating,
+  .provider-experience,
+  .provider-hourly {
+    font-size: 0.875rem;
+    margin: 0.25rem 0;
+  }
+  .button-primary {
+    background-color: #4F46E5;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+  }
+  

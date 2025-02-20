@@ -1,65 +1,100 @@
-import React, { useState } from 'react';
-import ServiceProviderDetails from '../ServiceProviderDetails/ServiceProviderDetails';
-const ServiceProviders = ({ service }) => {
-    const [selectedProvider,setSelectedProvider] = useState(null);
+import React from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import "./ServiceProviders.css";
 
-    const providers = {
-        Plumbing: ['Plumber A', 'Plumber B', 'Plumber C','Plumber D', 'Plumber E', 'Plumber F','Plumber G'],
-        Electrician: ['Electrician A', 'Electrician B', 'Electrician C'],
-        Cleaning: ['Cleaner A', 'Cleaner B', 'Cleaner C'],
-        Gardening: ['Gardener A', 'Gardener B', 'Gardener C'],
-        Painting: ['Painter A', 'Painter B', 'Painter C'],
-        Carpentry: ['Carpenter A', 'Carpenter B', 'Carpenter C'],
-        'Pest Control': ['Pest Controller A', 'Pest Controller B', 'Pest Controller C'],
-        'Appliance Repair': ['Repairman A', 'Repairman B', 'Repairman C'],
-        Locksmith: ['Locksmith A', 'Locksmith B', 'Locksmith C'],
-        HVAC: ['HVAC Specialist A', 'HVAC Specialist B', 'HVAC Specialist C'],
-        Roofing: ['Roofer A', 'Roofer B', 'Roofer C'],
-        Landscaping: ['Landscaper A', 'Landscaper B', 'Landscaper C'],
-    };
-
-
-
-    const handleMoreDetails=(provider)=>{
-        setSelectedProvider(provider);
-    }
-
-    if(selectedProvider){
-        const providerDetails = {
-            name: selectedProvider,
-            experience: 10,
-            specialization: service,
-            rating: 4.5,
-            previousWork: [
-              `Completed work for ${service} at John's residence`,
-              `Performed ${service} at an office building`,
-              `Provided ${service} services at a commercial complex`,
-            ],
-          };
-      
-          return <ServiceProviderDetails provider={providerDetails} />;
-        }
-
-    return (
-        <div className="serviceProvider">
-            <h2>Service Providers for {service}'s at your location</h2>
-            <div className="serviceProvider-section">
-                {providers[service]?.map((provider, index) => (
-                <div key={index} className={`box${(index % 4) + 1} box`}>
-                    <div className="box-content">
-                    <h2>{provider}</h2>
-                    <div
-                        className="box-img"
-                        style={{ backgroundImage: `url('provider${index + 1}_image.jpg')` }} 
-                    ></div>
-                    <p onClick={()=>handleMoreDetails(provider)}>More details about {provider}</p>
-                    </div>
-                </div>
-                )) || <p>No providers available for {service}.</p>}
-            </div>
-        <button onClick={() => window.location.reload()}>Go Back to Services</button>
-    </div>
-    );
+// Sample data for service providers
+const mockServiceProviders = {
+  Plumbing: [
+    {
+      id: "john-smith",
+      name: "John Smith",
+      image:
+        "https://readdy.ai/api/search-image?query=professional+plumber",
+      title: "Master Plumber",
+      rating: 4.9,
+      reviews: 120,
+      experience: "15+ years",
+      hourlyRate: 75,
+      availability: "Available Today",
+    },
+    {
+      id: "robert-johnson",
+      name: "Robert Johnson",
+      image:
+        "https://public.readdy.ai/ai/img_res/972e1e0b0a9bc580ac214b0f5530bff9.jpg",
+      title: "Licensed Plumber",
+      rating: 4.8,
+      reviews: 95,
+      experience: "12+ years",
+      hourlyRate: 70,
+      availability: "Available Tomorrow",
+    },
+  ],
+  Electrical: [
+    {
+      id: "sarah-johnson",
+      name: "Sarah Johnson",
+      image:
+        "https://readdy.ai/api/search-image?query=professional+electrician",
+      title: "Master Electrician",
+      rating: 4.9,
+      reviews: 150,
+      experience: "10+ years",
+      hourlyRate: 85,
+      availability: "Available Today",
+    },
+  ],
 };
+
+function ServiceProviders() {
+  const { serviceName } = useParams();
+  const navigate = useNavigate();
+  const providers = mockServiceProviders[serviceName] || [];
+
+  return (
+    <div className="service-providers-container">
+      <div className="service-providers-header">
+        <h3>
+          Service Providers for <span className="text-primary">{serviceName}</span>
+        </h3>
+        <button className="back-button" onClick={() => navigate("/")}>
+          ← Back to Services
+        </button>
+      </div>
+      <div className="providers-grid">
+        {providers.map((provider, idx) => (
+          <div key={idx} className="provider-card">
+            <div className="provider-info">
+              <img
+                src={provider.image}
+                alt={provider.name}
+                className="provider-image"
+              />
+              <div className="provider-details">
+                <h4 className="provider-name">{provider.name}</h4>
+                <p className="provider-title">{provider.title}</p>
+                <p className="provider-rating">
+                  {provider.rating} ({provider.reviews} reviews)
+                </p>
+                <p className="provider-experience">
+                  Experience: {provider.experience}
+                </p>
+                <p className="provider-hourly">${provider.hourlyRate}/hour</p>
+              </div>
+            </div>
+            <button
+              className="button-primary"
+              onClick={() =>
+                navigate(`/provider/${provider.id}`)
+              }
+            >
+              Book Now
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default ServiceProviders;

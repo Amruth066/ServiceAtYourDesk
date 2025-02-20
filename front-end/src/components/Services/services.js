@@ -1,46 +1,41 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./Services.css";
 
-const Services = ({ onServiceSelect }) => {
+const servicesData = [
+  { name: "Plumbing", icon: "🔧", price: "From $75/hour" },
+  { name: "Electrical", icon: "💡", price: "From $85/hour" },
+  { name: "Cleaning", icon: "🧹", price: "From $45/hour" },
+  { name: "Painting", icon: "🎨", price: "From $65/hour" },
+];
+
+function Services() {
   const navigate = useNavigate();
-  const services = [
-    { id: 1, name: 'Plumbing', image: 'plumbing.jpg' },
-    { id: 2, name: 'Electrician', image: 'electrician.jpg' },
-    { id: 3, name: 'Cleaning', image: 'cleaning.jpg' },
-    { id: 4, name: 'Gardening', image: 'gardening.jpg' },
-    { id: 5, name: 'Painting', image: 'painting.jpg' },
-    { id: 6, name: 'Carpentry', image: 'carpentry.jpg' },
-    { id: 7, name: 'Pest Control', image: 'pestcontrol.jpg' },
-    { id: 8, name: 'Appliance Repair', image: 'appliancerepair.jpg' },
-    { id: 9, name: 'Locksmith', image: 'locksmith.jpg' },
-    { id: 10, name: 'HVAC', image: 'hvac.jpg' },
-    { id: 11, name: 'Roofing', image: 'roofing.jpg' },
-    { id: 12, name: 'Landscaping', image: 'landscaping.jpg' },
-  ];
 
-  const handleServiceClick=(service)=>{
-    onServiceSelect(service.name);
-    navigate('/services/service-provider')
-  }
+  const handleServiceClick = (serviceName) => {
+    navigate(`/service/${serviceName}`);
+  };
 
   return (
-    <div className="service-section">
-      {services.map((service) => (
-        <div key={service.id} className={`box${(service.id % 4) + 1} box`}>
-          <div className="box-content">
-            <h2>{service.name}</h2>
+    <section className="services-section" id="services">
+      <div className="services-container">
+        <h2 className="section-title">All Services</h2>
+        <div className="services-grid">
+          {servicesData.map((service, index) => (
             <div
-              className="box-img"
-              style={{ backgroundImage: `url(${service.image})` }}
-            ></div>
-            <button onClick={() => handleServiceClick(service)}>
-              See Providers
-            </button>
-          </div>
+              key={index}
+              className="card"
+              onClick={() => handleServiceClick(service.name)}
+            >
+              <div className="card-icon">{service.icon}</div>
+              <h3 className="card-title">{service.name}</h3>
+              <p className="card-subtitle">{service.price}</p>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+      </div>
+    </section>
   );
-};
+}
 
 export default Services;

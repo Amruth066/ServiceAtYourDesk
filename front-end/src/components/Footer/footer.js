@@ -1,38 +1,34 @@
-import React from 'react';
+import React from "react";
+import "./Footer.css";
 
-const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
-
+function Footer() {
   return (
-    <footer>
-      <div className="foot-panel1" onClick={scrollToTop} style={{ cursor: 'pointer' }}>
-        Back to Top
-      </div>
-      <div className="foot-panel2">
-      {[...Array(4)].map((_, index) => (
-        <ul>
-          <p>Get to Know Us</p>
-          <li><a href="#">Careers at Work At Your Will</a></li>
-          <li><a href="#">Our Blog</a></li>
-          <li><a href="#">About Work At Your Will</a></li>
-          <li><a href="#">Investor Relations</a></li>
-          <li><a href="#">Our Services</a></li>
-          <li><a href="#">Work At Your Will Community</a></li>
-        </ul>
-      ))}
-      </div>
-      <div className="foot-panel3">
-        <div className="logo">
-          <img src="your-logo-url.png" alt="Work At Your Will Logo" style={{ height: '50px' }} />
+    <footer className="footer">
+      <div className="footer-container">
+        <div className="footer-grid">
+          <div className="footer-column">
+            <div className="footer-logo">logo</div>
+            <p className="footer-text">
+              Professional services at your fingertips
+            </p>
+          </div>
+          <div className="footer-column">
+            <h3 className="footer-title">Quick Links</h3>
+            <ul className="footer-links">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Professionals</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+          {/* Additional footer columns can be added here */}
+        </div>
+        <div className="footer-bottom">
+          <p>&copy; 2025 ServiceAtYour Desk. All rights reserved.</p>
         </div>
       </div>
     </footer>
   );
-};
+}
 
 export default Footer;
