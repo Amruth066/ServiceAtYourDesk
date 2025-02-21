@@ -12,15 +12,12 @@
     font-size: 1rem;
     margin-bottom: 1rem;
   }
-  
-  /* Two-column layout */
   .provider-details-wrapper {
     display: flex;
     gap: 2rem;
     flex-wrap: wrap;
   }
   
-  /* Left Column: Basic Details */
   .left-column {
     flex: 1;
     display: flex;
@@ -29,7 +26,7 @@
   }
   
   .provider-image-small {
-    width: 10rem;  /* 10 rem x 10 rem size */
+    width: 10rem; 
     height: 10rem;
     border-radius: 50%;
     object-fit: cover;
@@ -52,7 +49,6 @@
     font-size: 1rem;
   }
   
-  /* Right Column: Pie Chart and Book Now */
   .right-column {
     flex: 1;
     display: flex;
@@ -78,7 +74,6 @@
     cursor: pointer;
   }
   
-  /* Client Reviews Section */
   .client-reviews {
     margin-top: 2rem;
   }
@@ -107,7 +102,6 @@
     color: #4F46E5;
   }
   
-  /* Modal Styles */
   .modal-overlay {
     position: fixed;
     top: 0;
