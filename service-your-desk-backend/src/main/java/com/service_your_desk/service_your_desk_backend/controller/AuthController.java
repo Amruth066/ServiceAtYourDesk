@@ -24,7 +24,7 @@ public class AuthController {
             return ResponseEntity.badRequest().body(Map.of("message", "Email already in use"));
         }
 
-        user.setPassword(user.getPassword()); 
+        user.setPassword(user.getPassword()); // Ideally, hash passwords
         userRepository.save(user);
         return ResponseEntity.ok(Map.of("message", "User registered successfully"));
     }
