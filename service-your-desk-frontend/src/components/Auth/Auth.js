@@ -1,56 +1,60 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./Auth.css";
 
 const Auth = () => {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+    const [isLogin, setIsLogin] = useState(true);
+    const [formData, setFormData] = useState({ email: "", password: "", name: "" });
+    const [error, setError] = useState(null);
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
-    try {
-      const response = await fetch("http://localhost:8080/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError(null);
+        
+        const url = isLogin ? "http://localhost:8080/api/auth/login" : "http://localhost:8080/api/auth/signup";
 
-      if (response.ok) {
-        navigate("/"); 
-      } else {
-        setError("Invalid email or password");
-      }
-    } catch (err) {
-      setError("Something went wrong. Please try again.");
-    }
-  };
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
 
-  return (
-    <div className="auth-container">
-      <h2>Login</h2>
-      {error && <p className="error">{error}</p>}
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Login</button>
-      </form>
-    </div>
-  );
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.message || "Something went wrong");
+
+            if (isLogin) {
+                localStorage.setItem("user", JSON.stringify(data));
+                alert("Login successful!");
+            } else {
+                alert("Signup successful! Please login.");
+                setIsLogin(true);
+            }
+        } catch (err) {
+            setError(err.message);
+        }
+    };
+
+    return (
+        <div className="auth-container">
+            <h2>{isLogin ? "Login" : "Signup"}</h2>
+            <form onSubmit={handleSubmit}>
+                {!isLogin && (
+                    <input type="text" name="name" placeholder="Full Name" value={formData.name} onChange={handleChange} required />
+                )}
+                <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
+                <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
+                <button type="submit">{isLogin ? "Login" : "Signup"}</button>
+            </form>
+            {error && <p className="error">{error}</p>}
+            <p onClick={() => setIsLogin(!isLogin)} className="toggle">
+                {isLogin ? "Don't have an account? Sign up" : "Already have an account? Login"}
+            </p>
+        </div>
+    );
 };
 
 export default Auth;
