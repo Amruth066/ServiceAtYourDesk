@@ -2,15 +2,54 @@ import React, { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import * as echarts from "echarts";
 import "./ServiceProviderDetails.css";
-
-function BookingModal({ onClose }) {
+function BookingModal({ onClose, providerId }) {
   const [date, setDate] = useState("");
   const [slot, setSlot] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080/api";
+
+  const handleSubmit = async (e) => {
+
+    const userId = 1
+
     e.preventDefault();
-    alert(`Booked on ${date} at ${slot}`);
-    onClose();
+
+    
+
+    setIsSubmitting(true);
+
+    const bookingData = {
+      providerId,
+      date,
+      slot,
+      userId,
+    };
+
+
+    try {
+      const response = await fetch(`${API_URL}/bookings`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bookingData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to book appointment");
+      }
+
+      alert(`Booked on ${date} at ${slot}`);
+      onClose();
+    } catch (error) {
+      console.error("Booking failed:", error);
+      alert("Failed to book appointment. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+
+    console.log(bookingData)
   };
 
   return (
@@ -43,14 +82,10 @@ function BookingModal({ onClose }) {
             </select>
           </label>
           <div className="modal-buttons">
-            <button type="submit" className="button-primary">
-              Confirm Booking
+            <button type="submit" className="button-primary" disabled={isSubmitting}>
+              {isSubmitting ? "Booking..." : "Confirm Booking"}
             </button>
-            <button
-              type="button"
-              className="modal-close-button"
-              onClick={onClose}
-            >
+            <button type="button" className="modal-close-button" onClick={onClose}>
               Cancel
             </button>
           </div>
@@ -59,6 +94,7 @@ function BookingModal({ onClose }) {
     </div>
   );
 }
+
 
 function ServiceProviderDetails() {
   const { providerId } = useParams();
@@ -70,6 +106,9 @@ function ServiceProviderDetails() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080/api";
+
+
+  
 
   useEffect(() => {
     setLoading(true);
@@ -192,7 +231,7 @@ function ServiceProviderDetails() {
           <p>No reviews available.</p>
         )}
       </div>
-      {isModalOpen && <BookingModal onClose={() => setIsModalOpen(false)} />}
+      {isModalOpen && <BookingModal onClose={() => setIsModalOpen(false)} providerId={providerId} />}
     </div>
   );
 }
