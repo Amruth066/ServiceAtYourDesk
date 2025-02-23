@@ -19,7 +19,6 @@ public class ProviderController {
     @Autowired
     private ProviderService providerService;
     
-    // GET all providers
     @GetMapping
     public List<ProviderEntity> getAllProviders() {
         return providerService.getAllProviders();

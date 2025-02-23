@@ -1,7 +1,5 @@
 package com.service_your_desk.service_your_desk_backend.model;
 
-import java.util.*;
-
 import jakarta.persistence.*;
 
 @Entity
