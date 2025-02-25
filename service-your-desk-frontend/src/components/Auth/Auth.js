@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./Auth.css";
 
 const Auth = () => {
     const [isLogin, setIsLogin] = useState(true);
     const [formData, setFormData] = useState({ email: "", password: "", name: "" });
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -13,7 +17,7 @@ const Auth = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
-        
+
         const url = isLogin ? "http://localhost:8080/api/auth/login" : "http://localhost:8080/api/auth/signup";
 
         try {
@@ -28,9 +32,26 @@ const Auth = () => {
 
             if (isLogin) {
                 localStorage.setItem("user", JSON.stringify(data));
-                alert("Login successful!");
+                toast.success("Login successful!", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    style: { background: "#007bff", color: "#fff" },
+                });
+                setTimeout(() => navigate("/"), 2000); 
             } else {
-                alert("Signup successful! Please login.");
+                toast.success("Signup successful! Please login.", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    style: { background: "#007bff", color: "#fff" }, 
+                });
                 setIsLogin(true);
             }
         } catch (err) {
@@ -40,6 +61,7 @@ const Auth = () => {
 
     return (
         <div className="auth-container">
+            <ToastContainer /> {/* Required to display toast messages */}
             <h2>{isLogin ? "Login" : "Signup"}</h2>
             <form onSubmit={handleSubmit}>
                 {!isLogin && (
