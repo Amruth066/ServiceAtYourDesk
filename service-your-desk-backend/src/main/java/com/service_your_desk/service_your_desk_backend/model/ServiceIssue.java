@@ -1,20 +1,62 @@
 package com.service_your_desk.service_your_desk_backend.model;
+
 import jakarta.persistence.*;
-import lombok.*;
 
 @Entity
 @Table(name = "service_issues")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class ServiceIssue {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    private String serviceName;
-    
+
+    @ManyToOne
+    @JoinColumn(name = "service_id", nullable = false)
+    private ServiceEntity service;
+
+    @Column(name = "issue_name", nullable = false)
     private String issueName;
+
+    // Default constructor
+    public ServiceIssue() {}
+
+    // Parameterized constructor
+    public ServiceIssue(ServiceEntity service, String issueName) {
+        this.service = service;
+        this.issueName = issueName;
+    }
+
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public ServiceEntity getService() {
+        return service;
+    }
+
+    public void setService(ServiceEntity service) {
+        this.service = service;
+    }
+
+    public String getIssueName() {
+        return issueName;
+    }
+
+    public void setIssueName(String issueName) {
+        this.issueName = issueName;
+    }
+
+    @Override
+    public String toString() {
+        return "ServiceIssue{" +
+                "id=" + id +
+                ", service=" + service.getName() +  // Display service name instead of full object
+                ", issueName='" + issueName + '\'' +
+                '}';
+    }
 }
