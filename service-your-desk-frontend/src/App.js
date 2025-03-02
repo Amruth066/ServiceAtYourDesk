@@ -7,8 +7,10 @@ import ServiceProviders from "./components/ServiceProviders/ServiceProviders";
 import ServiceProviderDetails from "./components/ServiceProviderDetails/ServiceProviderDetails";
 import Footer from "./components/Footer/Footer";
 import Bookings from "./components/Bookings/Bookings";
-import "./App.css";
 import Auth from "./components/Auth/Auth";
+import ProtectedRoute from "./components/ProtectedRoute";
+import ChatbotComponent from "./components/Chatbot/Chatbot";
+import "./App.css";
 
 function App() {
   return (
@@ -16,19 +18,15 @@ function App() {
       <div className="App">
         <Navigation />
         <Routes>
-          <Route path="/" element={
-            <>
-              <Header />
-              <Services />
-            </>
-          } />
-          <Route path="/services" element={<Services />} />
-          <Route path="/service/:serviceName" element={<ServiceProviders />} />
-          <Route path="/provider/:providerId" element={<ServiceProviderDetails />} />
-          <Route path="/bookings" element={<Bookings/>}/>
-          <Route path="/auth" element={<Auth/>}/>
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/" element={<ProtectedRoute element={<><Header /><Services /></>} />} />
+          <Route path="/services" element={<ProtectedRoute element={<Services />} />} />
+          <Route path="/service/:serviceName" element={<ProtectedRoute element={<ServiceProviders />} />} />
+          <Route path="/provider/:providerId" element={<ProtectedRoute element={<ServiceProviderDetails />} />} />
+          <Route path="/bookings" element={<ProtectedRoute element={<Bookings />} />} />
         </Routes>
         <Footer />
+        <ChatbotComponent /> {/* Add chatbot component */}
       </div>
     </Router>
   );

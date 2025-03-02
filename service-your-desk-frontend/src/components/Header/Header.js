@@ -1,7 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Header.css";
 
 function Header() {
+  const [selectedService, setSelectedService] = useState("");
+  const navigate = useNavigate();
+
+  const services = [
+    "Plumbing",
+    "Electrical",
+    "Cleaning",
+    "Carpentry",
+    "Painting",
+    "Pest Control",
+    "Home Repair",
+  ];
+
+  const handleSearch = () => {
+    if (selectedService) {
+      navigate(`/service/${selectedService}`);
+    }
+  };
+
   return (
     <header className="header">
       <div className="header-container">
@@ -13,8 +33,21 @@ function Header() {
           Find trusted professionals for all your home services. Book appointments easily and get the job done right.
         </p>
         <div className="search-bar">
-          <input type="text" className="search-input" placeholder="What service do you need?" />
-          <button className="search-button">Search</button>
+          <select
+            className="service-dropdown"
+            value={selectedService}
+            onChange={(e) => setSelectedService(e.target.value)}
+          >
+            <option value="">Select a Service</option>
+            {services.map((service, index) => (
+              <option key={index} value={service}>
+                {service}
+              </option>
+            ))}
+          </select>
+          <button className="search-button" onClick={handleSearch} disabled={!selectedService}>
+            Search
+          </button>
         </div>
       </div>
     </header>
