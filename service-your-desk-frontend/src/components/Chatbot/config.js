@@ -4,7 +4,7 @@ import MessageParser from "./MessageParser";
 
 const config = {
   botName: "HelpBot",
-  initialMessages: [createChatBotMessage("Hello! How can I assist you today?")],
+  initialMessages: [createChatBotMessage("Hello! At which service do you have an issue?")],
   actionProvider: ActionProvider,
   messageParser: MessageParser,
 };

@@ -5,7 +5,6 @@ import com.service_your_desk.service_your_desk_backend.model.ServiceIssue;
 import com.service_your_desk.service_your_desk_backend.repository.ServiceIssueRepository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ServiceIssueService {
@@ -16,15 +15,19 @@ public class ServiceIssueService {
         this.repository = repository;
     }
 
-    // Get all unique service names from ServiceEntity
+    // Get all service issues
     public List<ServiceIssue> getAllServicesIssues() {
         return repository.findAll();
     }
+
     // Get issues by service name
     public List<ServiceIssue> getIssuesByService(String serviceName) {
-        return repository.findAll()
-                .stream()
-                .filter(issue -> issue.getService().getName().equalsIgnoreCase(serviceName))
-                .collect(Collectors.toList());
+        return repository.findByService_Name(serviceName); // Corrected query
+    }
+
+    // Get details of an issue by name
+    public ServiceIssue getIssueDetails(String issueName) {
+        return repository.findByIssueName(issueName)
+                .orElseThrow(() -> new RuntimeException("Issue not found: " + issueName));
     }
 }

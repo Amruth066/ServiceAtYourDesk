@@ -7,13 +7,12 @@ import com.service_your_desk.service_your_desk_backend.service.ProviderService;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
 @RequestMapping("/api/providers")
-@CrossOrigin(origins = "*")  
+@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*", allowCredentials = "true")
 public class ProviderController {
 
     @Autowired
@@ -22,6 +21,11 @@ public class ProviderController {
     @GetMapping
     public List<ProviderEntity> getAllProviders() {
         return providerService.getAllProviders();
+    }
+
+    @GetMapping("/top-rated")
+    public List<ProviderEntity> getTopRatedProviders() {
+        return providerService.getTopRatedProviders();
     }
     
     // GET provider by ID

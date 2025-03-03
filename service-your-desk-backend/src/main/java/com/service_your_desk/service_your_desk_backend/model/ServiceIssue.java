@@ -51,11 +51,15 @@ public class ServiceIssue {
         this.issueName = issueName;
     }
 
+    public Integer getServiceId() { // Added serviceId for frontend
+        return service != null ? service.getServiceId() : null;
+    }
+
     @Override
     public String toString() {
         return "ServiceIssue{" +
                 "id=" + id +
-                ", service=" + service.getName() +  // Display service name instead of full object
+                ", service=" + (service != null ? service.getName() : "null") +  
                 ", issueName='" + issueName + '\'' +
                 '}';
     }

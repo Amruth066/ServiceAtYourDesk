@@ -21,4 +21,9 @@
     border-radius: 10px;
     overflow: hidden;
   }
-  
+  .react-chatbot-kit-chat-container{
+    width:350px
+  }
+  .react-chatbot-kit-chat-message-container{
+    width: 350px;
+  }

@@ -17,6 +17,10 @@ public class ProviderService {
         return providerRepository.findAll();
     }
 
+    public List<ProviderEntity> getTopRatedProviders() {
+        return providerRepository.findByRatingGreaterThan(4.5);
+    }
+
     public Optional<ProviderEntity> getProviderById(Integer id) {
         return providerRepository.findById(id);
     }
