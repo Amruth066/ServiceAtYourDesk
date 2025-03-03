@@ -10,7 +10,6 @@ import Bookings from "./components/Bookings/Bookings";
 import Auth from "./components/Auth/Auth";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ChatbotComponent from "./components/Chatbot/Chatbot";
-import TopRatedServiceProviders from "./components/TopRatedServiceProviders/TopRatedServiceProviders"
 import "./App.css";
 
 function App() {
@@ -26,7 +25,6 @@ function App() {
           <Route path="/provider/:providerId" element={<ProtectedRoute element={<ServiceProviderDetails />} />} />
           <Route path="/bookings" element={<ProtectedRoute element={<Bookings />} />} />
         </Routes>
-        <TopRatedServiceProviders /> 
         <Footer />
         <ChatbotComponent /> 
       </div>

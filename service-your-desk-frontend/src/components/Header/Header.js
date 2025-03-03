@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Header.css";
+import TopRatedServiceProviders from "../TopRatedServiceProviders/TopRatedServiceProviders";
 
 function Header() {
   const [selectedService, setSelectedService] = useState("");

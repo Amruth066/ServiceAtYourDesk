@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Services.css";
+import TopRatedServiceProviders from "../TopRatedServiceProviders/TopRatedServiceProviders";
 
 const iconMapping = {
   Plumbing: "🔧",
@@ -32,6 +33,7 @@ function Services() {
 
   return (
     <section className="services-section" id="services">
+      <TopRatedServiceProviders />
       <div className="services-container">
         <h2 className="section-title">All Services</h2>
         <div className="services-grid">
@@ -52,6 +54,7 @@ function Services() {
           ))}
         </div>
       </div>
+      <br />
     </section>
   );
 }
