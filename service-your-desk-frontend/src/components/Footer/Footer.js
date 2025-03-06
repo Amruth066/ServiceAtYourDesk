@@ -19,6 +19,7 @@ function Footer() {
               <li><a href="#">Services</a></li>
               <li><a href="#">Professionals</a></li>
               <li><a href="#">Contact</a></li>
+              <li><a href="serviceProviderSignIn">Login/Signup as Service Provider</a></li>
             </ul>
           </div>
           {/* Additional footer columns can be added here */}

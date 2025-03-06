@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./Auth.css";
+import "./ServiceProviderSignIn.css";
 
-const Auth = () => {
+const ServiceProviderSignIn = () => {
     const [isLogin, setIsLogin] = useState(true);
     const [formData, setFormData] = useState({ email: "", password: "", name: "" });
     const [error, setError] = useState(null);
@@ -18,7 +18,8 @@ const Auth = () => {
         e.preventDefault();
         setError(null);
 
-        const url = isLogin ? "http://localhost:8080/api/auth/login" : "http://localhost:8080/api/auth/signup";
+        const url = isLogin ? "http://localhost:8080/api/serviceProviderAuth/login" : "http://localhost:8080/api/serviceProviderAuth/signup";
+
 
         try {
             const response = await fetch(url, {
@@ -41,7 +42,7 @@ const Auth = () => {
                     draggable: true,
                     style: { background: "#007bff", color: "#fff" },
                 });
-                setTimeout(() => navigate("/auth"), 2000); 
+                setTimeout(() => navigate("/ServiceProviderNavigation"), 2000); 
             } else {
                 toast.success("Signup successful! Please login.", {
                     position: "top-right",
@@ -62,7 +63,7 @@ const Auth = () => {
     return (
         <div className="auth-container">
             <ToastContainer /> {/* Required to display toast messages */}
-            <h2>{isLogin ? "Login" : "Signup"}</h2>
+            <h2>{isLogin ? "Login as Service Provider" : "Signup as Service Provider"}</h2>
             <form onSubmit={handleSubmit}>
                 {!isLogin && (
                     <input type="text" name="name" placeholder="Full Name" value={formData.name} onChange={handleChange} required />
@@ -79,4 +80,4 @@ const Auth = () => {
     );
 };
 
-export default Auth;
+export default ServiceProviderSignIn;
