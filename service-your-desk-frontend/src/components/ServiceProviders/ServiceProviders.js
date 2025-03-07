@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./ServiceProviders.css";
+import image from "../../assets/images/worker.jpg";
 
 
 function ServiceProviders() {
@@ -68,7 +69,7 @@ function ServiceProviders() {
           {providers.map((provider) => (
             <div key={provider.providerId} className="provider-card" onClick={() => handleProviderClick(provider.providerId)}>
               <img
-                src={provider.image}
+                src={image}
                 alt={provider.name}
                 className="provider-image"
               />

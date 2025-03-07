@@ -33,8 +33,8 @@ function Services() {
 
   return (
     <section className="services-section" id="services">
-      <TopRatedServiceProviders />
       <div className="services-container">
+      <TopRatedServiceProviders />
         <h2 className="section-title">All Services</h2>
         <div className="services-grid">
           {services.map((service, index) => (

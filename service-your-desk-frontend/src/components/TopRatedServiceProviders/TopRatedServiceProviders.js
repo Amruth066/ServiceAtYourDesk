@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import "./TopRatedServiceProviders.css";
+import imageUrl from "../../assets/images/worker.jpg"
 
 const TopRatedServiceProviders = () => {
     const [providers, setProviders] = useState([]);
@@ -35,7 +36,7 @@ const TopRatedServiceProviders = () => {
                         onClick={() => handleProviderClick(provider.providerId)}
                         style={{ cursor: "pointer" }} 
                     >
-                        <img src={provider.imageUrl} alt={provider.name} />
+                        <img src={imageUrl} alt={provider.name} />
                         <p>{provider.name} ⭐ {provider.rating}</p>
                     </div>
                 ))}

@@ -20,8 +20,10 @@ function AppContent() {
 
   return (
     <div className="App">
-      <Navigation/>
-      <ServiceProviderNavigation/>
+      <ChatbotComponent />
+
+      <Navigation />
+      {/* <ServiceProviderNavigation/> */}
       <Routes>
         <Route path="/auth" element={<Auth />} />
         <Route path="/serviceProviderSignIn" element={<ServiceProviderSignIn />} />
@@ -30,12 +32,10 @@ function AppContent() {
         <Route path="/service/:serviceName" element={<ProtectedRoute element={<ServiceProviders />} />} />
         <Route path="/provider/:providerId" element={<ProtectedRoute element={<ServiceProviderDetails />} />} />
         <Route path="/bookings" element={<ProtectedRoute element={<Bookings />} />} />
-        <Route path="/serviceProviderBookings" element={<ServiceProviderBookings/>} />
-        <Route path="/serviceProviderProfile" element={<ServiceProviderProfile/>} />
+        <Route path="/serviceProviderBookings" element={<ServiceProviderBookings />} />
+        <Route path="/serviceProviderProfile" element={<ServiceProviderProfile />} />
       </Routes>
-
       <Footer />
-      <ChatbotComponent />
     </div>
   );
 }

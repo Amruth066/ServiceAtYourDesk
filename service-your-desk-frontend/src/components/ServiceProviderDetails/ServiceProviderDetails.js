@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import * as echarts from "echarts";
 import "./ServiceProviderDetails.css";
+import imageUrl from "../../assets/images/worker.jpg"
+
+
 function BookingModal({ onClose, providerId }) {
   const [date, setDate] = useState("");
   const [slot, setSlot] = useState("");
@@ -187,7 +190,7 @@ function ServiceProviderDetails() {
         {/* Left Column: Basic Details */}
         <div className="left-column">
           <img
-            src={provider.image}
+            src={imageUrl}
             alt={provider.name}
             className="provider-image-small"
           />

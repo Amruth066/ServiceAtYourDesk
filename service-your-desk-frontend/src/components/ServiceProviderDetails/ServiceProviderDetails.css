@@ -26,9 +26,8 @@
   }
   
   .provider-image-small {
-    width: 10rem; 
-    height: 10rem;
-    border-radius: 50%;
+    width: 100px; 
+    height: 100px;
     object-fit: cover;
   }
   
