@@ -24,7 +24,6 @@ const TopRatedServiceProviders = () => {
     const handleProviderClick = (providerId) => {
         navigate(`/provider/${providerId}`); 
     };
-
     return (
         <div className="top-rated-container">
             <h2>Top Rated Service Providers</h2>
@@ -34,7 +33,7 @@ const TopRatedServiceProviders = () => {
                         key={provider.id} 
                         className="provider-card" 
                         onClick={() => handleProviderClick(provider.providerId)}
-                        style={{ cursor: "pointer" }} 
+                        style={{ position: "relative",cursor: "pointer" }} 
                     >
                         <img src={imageUrl} alt={provider.name} />
                         <p>{provider.name} ⭐ {provider.rating}</p>

@@ -9,7 +9,6 @@ import Footer from "./components/Footer/Footer";
 import Bookings from "./components/Bookings/Bookings";
 import Auth from "./components/Auth/Auth";
 import ProtectedRoute from "./components/ProtectedRoute";
-import ServiceProviderNavigation from "./components/ServiceProviderNavigation/ServiceProviderNavigation";
 import ChatbotComponent from "./components/Chatbot/Chatbot";
 import ServiceProviderBookings from "./components/ServiceProviderBookings/ServiceProviderBookings"
 import ServiceProviderProfile from "./components/ServiceProviderProfile/ServiceProviderProfile";
@@ -35,7 +34,7 @@ function AppContent() {
         <Route path="/serviceProviderBookings" element={<ServiceProviderBookings />} />
         <Route path="/serviceProviderProfile" element={<ServiceProviderProfile />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
