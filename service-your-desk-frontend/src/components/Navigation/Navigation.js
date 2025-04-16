@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Navigation.css";
-
+import Messenger from "../Messenger/Messenger";
 function Navigation() {
   return (
     <nav className="navbar">
@@ -14,6 +14,7 @@ function Navigation() {
           <Link to="/auth">
             <button className="button-primary">Sign In</button>
           </Link>
+          <Messenger />
         </div>
       </div>
     </nav>

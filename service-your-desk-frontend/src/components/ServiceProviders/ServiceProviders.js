@@ -69,15 +69,15 @@ function ServiceProviders() {
         <div className="providers-grid">
           {providers.map((provider) => (
             <div
-            key={provider.providerId}
-            className="provider-card"
-            onClick={(e) => {
-              if (e.target.tagName.toLowerCase() !== "button") {
-                handleProviderClick(provider.providerId);
-              }
-            }}
-          >
-          
+              key={provider.providerId}
+              className="provider-card"
+              onClick={(e) => {
+                if (e.target.tagName.toLowerCase() !== "button") {
+                  handleProviderClick(provider.providerId);
+                }
+              }}
+            >
+
               <img
                 src={`https://source.unsplash.com/400x250/?${serviceName},worker&sig=${provider.providerId}`}
                 onError={(e) => (e.target.src = image)}
