@@ -3,9 +3,10 @@
   max-width: 1800px;
   margin: 0 auto;
   font-family: Arial, sans-serif;
+  height: max-content;
 }
 
-.providers-container h2 {
+.title {
   text-align: center;
   margin-bottom: 20px;
 }
@@ -27,25 +28,28 @@
 .providers-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 50px;
-  justify-items: center;
+  gap: 40px;
+  justify-items: stretch;
+  align-items: stretch;
 }
 
 .provider-card {
-  width: 250px;
-  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   background-color: #fff;
   border: 1px solid #eee;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   padding: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  text-align: center;
-  transition: transform 0.2s ease;
+  box-sizing: border-box;
   cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%;
+  max-width: 280px;
+  overflow: hidden;
+  text-align: center;
 }
 
 .provider-card:hover {
@@ -60,30 +64,55 @@
   border-radius: 6px;
 }
 
-.provider-card h3 {
+.provider-name {
   font-size: 16px;
   font-weight: 600;
   color: #222;
   margin: 8px 0 4px;
 }
 
-.provider-card p {
-  font-size: 13px;
-  margin: 2px 0;
-  color: #555;
+.provider-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  margin-top: 8px;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  color: #444;
 }
 
-/* Error Message Styling */
+.provider-info h4,
+.provider-info h5 {
+  font-size: 13px;
+  margin: 2px 0;
+  font-weight: normal;
+}
+
+.book-button {
+  background-color: #28a745;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.book-button:hover {
+  background-color: #218838;
+}
+
 .error {
   color: red;
   text-align: center;
   margin-top: 20px;
 }
 
-/* Responsive Card Size for Small Screens */
-@media (max-width: 600px) {
-  .provider-card {
-    width: 90vw;
-    height: 90vw;
-  }
+.info-text {
+  text-align: center;
+  font-size: 16px;
+  color: #666;
 }
