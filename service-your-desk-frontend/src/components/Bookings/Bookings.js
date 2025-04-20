@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Bookings.css"; 
+import "./Bookings.css";
 
 const Bookings = () => {
     const [bookings, setBookings] = useState([]);
@@ -10,11 +10,9 @@ const Bookings = () => {
     const [review, setReview] = useState("");
 
     useEffect(() => {
-        fetch("http://localhost:8080/api/bookings") 
+        fetch("http://localhost:8080/api/bookings")
             .then(response => {
-                if (!response.ok) {
-                    throw new Error("Failed to fetch bookings");
-                }
+                if (!response.ok) throw new Error("Failed to fetch bookings");
                 return response.json();
             })
             .then(data => {
@@ -39,8 +37,7 @@ const Bookings = () => {
 
     const handleSubmit = () => {
         if (!selectedBooking) return;
-
-        // Simulate review submission by removing the booking from the table
+        // Here, you can make a POST call to save rating/review
         setBookings(bookings.filter(b => b.bookingId !== selectedBooking.bookingId));
         closeModal();
     };
@@ -50,32 +47,27 @@ const Bookings = () => {
 
     return (
         <div className="bookings-container">
-            <h2>Bookings</h2>
+            <h2>My Bookings</h2>
             {bookings.length === 0 ? (
                 <p>No bookings found.</p>
             ) : (
-                <table className="bookings-table">
-                    <thead>
-                        <tr>
-                            <th>Booking ID</th>
-                            <th>Provider ID</th>
-                            <th>Date</th>
-                            <th>Slot</th>
-                            <th>User Id</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {bookings.map(booking => (
-                            <tr key={booking.bookingId} onClick={() => openModal(booking)} style={{ cursor: "pointer" }}>
-                                <td>{booking.bookingId}</td>
-                                <td>{booking.providerId}</td>
-                                <td>{booking.date}</td>
-                                <td>{booking.slot}</td>
-                                <td>{booking.userId}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                <div className="booking-cards-wrapper">
+                    {bookings.map(booking => (
+                        <div
+                            key={booking.bookingId}
+                            className="booking-card"
+                        >
+                            <p><strong>Booking ID:</strong> {booking.bookingId}</p>
+                            <p><strong>Date:</strong> {booking.date}</p>
+                            <p><strong>Slot:</strong> {booking.slot}</p>
+                            <p><strong>User ID:</strong> {booking.userId}</p>
+                            <p><strong>Provider Id:</strong>{booking.providerId}</p>
+                            <button className="rate-btn" onClick={() => openModal(booking)}>
+                                Rate & Review
+                            </button>
+                        </div>
+                    ))}
+                </div>
             )}
 
             {/* Modal */}
@@ -84,7 +76,6 @@ const Bookings = () => {
                     <div className="modal-content">
                         <h3>Rate & Review</h3>
                         <p><strong>Booking ID:</strong> {selectedBooking.bookingId}</p>
-                        <p><strong>Provider ID:</strong> {selectedBooking.providerId}</p>
 
                         <label>Rating:</label>
                         <select value={rating} onChange={(e) => setRating(e.target.value)}>

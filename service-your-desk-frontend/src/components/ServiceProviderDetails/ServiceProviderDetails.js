@@ -11,15 +11,23 @@ function BookingModal({ onClose, providerId }) {
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080/api";
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
+  
+    if (!date || !slot) {
+      alert("Please select both date and time slot.");
+      return;
+    }
+  
+    const formattedDate = new Date(date).toISOString().split('T')[0];
     setIsSubmitting(true);
+  
     const bookingData = {
-      providerId,
-      date,
+      providerId: parseInt(providerId),
+      date: formattedDate,
       slot,
-      userId: 1, // You can update with real user later
+      userId: 1, 
     };
-
+  
     try {
       const response = await fetch(`${API_URL}/bookings`, {
         method: "POST",
@@ -28,11 +36,17 @@ function BookingModal({ onClose, providerId }) {
         },
         body: JSON.stringify(bookingData),
       });
-
-      if (!response.ok) throw new Error("Booking failed");
-
-      alert(`Booked on ${date} at ${slot}`);
-      onClose();
+  
+      console.log("Booking Data:", bookingData);
+  
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("Booking failed:", errorText);
+        throw new Error("Booking failed");
+      }
+  
+      alert(`Booked on ${formattedDate} at ${slot}`);
+      onClose(); // close modal on success
     } catch (err) {
       alert("Booking failed. Try again.");
       console.error(err);
@@ -40,6 +54,7 @@ function BookingModal({ onClose, providerId }) {
       setIsSubmitting(false);
     }
   };
+  
 
   return (
     <div className="modal-overlay">
@@ -78,7 +93,7 @@ function ServiceProviderDetails() {
   const [provider, setProvider] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(true); // Always open details modal
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080/api";
 

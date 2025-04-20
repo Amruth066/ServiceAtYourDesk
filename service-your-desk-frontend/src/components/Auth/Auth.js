@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { UserContext } from "../../context/UserContext";
 import "./Auth.css";
 
 const Auth = () => {
     const [isLogin, setIsLogin] = useState(true);
     const [formData, setFormData] = useState({ email: "", password: "", name: "" });
     const [error, setError] = useState(null);
+    const { setUser } = useContext(UserContext);
+
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -32,6 +35,7 @@ const Auth = () => {
 
             if (isLogin) {
                 localStorage.setItem("user", JSON.stringify(data));
+                setUser(data); // this updates the navbar
                 toast.success("Login successful!", {
                     position: "top-right",
                     autoClose: 3000,
@@ -41,7 +45,7 @@ const Auth = () => {
                     draggable: true,
                     style: { background: "#007bff", color: "#fff" },
                 });
-                setTimeout(() => navigate("/auth"), 2000); 
+                setTimeout(() => navigate("/"), 2000); 
             } else {
                 toast.success("Signup successful! Please login.", {
                     position: "top-right",
@@ -61,7 +65,7 @@ const Auth = () => {
 
     return (
         <div className="auth-container">
-            <ToastContainer /> {/* Required to display toast messages */}
+            <ToastContainer /> 
             <h2>{isLogin ? "Login" : "Signup"}</h2>
             <form onSubmit={handleSubmit}>
                 {!isLogin && (

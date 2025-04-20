@@ -16,6 +16,29 @@
     font-family: "Pacifico", cursive;
     color: #4F46E5;
   }
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .button-secondary {
+    color: #100f0f;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+.nav-link:hover .messenger-icon {
+  color: #4F46E5;
+  transform: scale(1.1);
+}
+
+.messenger-icon {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #333;
+}
+  
   .nav-links {
     display: flex;
     align-items: center;
@@ -25,12 +48,7 @@
     color: #374151;
     text-decoration: none;
   }
-  .nav-link:hover {
-    color: #4F46E5;
-  }
   .button-primary {
-    background-color: #4F46E5;
-    color: #fff;
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 8px;

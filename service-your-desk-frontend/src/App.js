@@ -10,11 +10,12 @@ import Bookings from "./components/Bookings/Bookings";
 import Auth from "./components/Auth/Auth";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ChatbotComponent from "./components/Chatbot/Chatbot";
-import ServiceProviderBookings from "./components/ServiceProviderBookings/ServiceProviderBookings"
+import ServiceProviderBookings from "./components/ServiceProviderScreen/ServiceProviderBookings/ServiceProviderBookings"
 import ServiceProviderProfile from "./components/ServiceProviderProfile/ServiceProviderProfile";
 import ServiceProviderSignIn from "./components/ServiceProviderSignIn/ServiceProviderSignIn";
 import "./App.css";
-
+import { UserContext, UserProvider } from "./context/UserContext";
+import Messenger from "./components/Messenger/Messenger";
 function AppContent() {
 
   return (
@@ -31,6 +32,7 @@ function AppContent() {
         <Route path="/service/:serviceName" element={<ProtectedRoute element={<ServiceProviders />} />} />
         <Route path="/provider/:providerId" element={<ProtectedRoute element={<ServiceProviderDetails />} />} />
         <Route path="/bookings" element={<ProtectedRoute element={<Bookings />} />} />
+        <Route path="/messages" element={<Messenger/>}/>
         <Route path="/serviceProviderBookings" element={<ServiceProviderBookings />} />
         <Route path="/serviceProviderProfile" element={<ServiceProviderProfile />} />
       </Routes>
@@ -42,7 +44,9 @@ function AppContent() {
 function App() {
   return (
     <Router>
-      <AppContent />
+      <UserProvider>
+        <AppContent />
+      </UserProvider>
     </Router>
   );
 }
