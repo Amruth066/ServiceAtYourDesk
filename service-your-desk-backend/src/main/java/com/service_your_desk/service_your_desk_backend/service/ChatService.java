@@ -20,4 +20,8 @@ public class ChatService {
     public List<ChatMessage> getChatHistory(String sender, String receiver) {
         return chatMessageRepository.findBySenderAndReceiverOrReceiverAndSender(sender, receiver, sender, receiver);
     }
+    
+    public List<String> getAllChatPartners(String sender) {
+        return chatMessageRepository.findAllChatPartners(sender);
+    }
 }

@@ -35,5 +35,9 @@ public class BookingController {
         bookingService.deleteBooking(id);
     }
 
-    
+    @DeleteMapping
+    public void deleteAllBookings() {
+        bookingService.deleteAllBookings();
+    }
+
 }

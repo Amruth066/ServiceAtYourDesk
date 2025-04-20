@@ -9,6 +9,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/chat")
+@CrossOrigin("*")
+
 public class ChatController {
 
     @Autowired
@@ -25,5 +27,10 @@ public class ChatController {
     @GetMapping("/history")
     public List<ChatMessage> getHistory(@RequestParam String sender, @RequestParam String receiver) {
         return chatService.getChatHistory(sender, receiver);
+    }
+    
+    @GetMapping("/partners")
+    public ResponseEntity<List<String>> getChatPartners(@RequestParam String sender) {
+        return ResponseEntity.ok(chatService.getAllChatPartners(sender));
     }
 }

@@ -1,6 +1,9 @@
 package com.service_your_desk.service_your_desk_backend.model;
 
 import java.time.LocalDate;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -16,6 +19,7 @@ public class BookingEntity {
     private Long providerId;
 
     @Column(name = "date", nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
     @Column(name = "slot", nullable = false, length = 20)
