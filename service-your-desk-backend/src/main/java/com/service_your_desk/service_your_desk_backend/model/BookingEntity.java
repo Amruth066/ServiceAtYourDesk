@@ -26,7 +26,10 @@ public class BookingEntity {
     private String slot;
 
     @Column(name = "user_id", nullable = false)
-    private Long userId; 
+    private Long userId;
+
+    @Column(name = "mark_as_done", nullable = false)
+    private boolean markAsDone = false;  
 
     public BookingEntity() {}
 
@@ -51,4 +54,7 @@ public class BookingEntity {
 
     public Long getUserId() { return userId; }
     public void setUserId(Long userId) { this.userId = userId; }
+
+    public boolean isMarkAsDone() { return markAsDone; }  
+    public void setMarkAsDone(boolean markAsDone) { this.markAsDone = markAsDone; }  
 }
