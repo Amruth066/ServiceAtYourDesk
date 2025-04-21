@@ -23,6 +23,7 @@ const Bookings = () => {
                 setError(err.message);
                 setLoading(false);
             });
+
     }, []);
 
     const openModal = (booking) => {
@@ -37,7 +38,6 @@ const Bookings = () => {
 
     const handleSubmit = () => {
         if (!selectedBooking) return;
-        // Here, you can make a POST call to save rating/review
         setBookings(bookings.filter(b => b.bookingId !== selectedBooking.bookingId));
         closeModal();
     };
@@ -45,32 +45,51 @@ const Bookings = () => {
     if (loading) return <p>Loading bookings...</p>;
     if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
 
+    const inProgressBookings = bookings.filter(booking => !booking.markAsDone);
+    const doneBookings = bookings.filter(booking => booking.markAsDone === true);
     return (
         <div className="bookings-container">
             <h2>My Bookings</h2>
-            {bookings.length === 0 ? (
-                <p>No bookings found.</p>
-            ) : (
-                <div className="booking-cards-wrapper">
-                    {bookings.map(booking => (
-                        <div
-                            key={booking.bookingId}
-                            className="booking-card"
-                        >
-                            <p><strong>Booking ID:</strong> {booking.bookingId}</p>
-                            <p><strong>Date:</strong> {booking.date}</p>
-                            <p><strong>Slot:</strong> {booking.slot}</p>
-                            <p><strong>User ID:</strong> {booking.userId}</p>
-                            <p><strong>Provider Id:</strong>{booking.providerId}</p>
-                            <button className="rate-btn" onClick={() => openModal(booking)}>
-                                Rate & Review
-                            </button>
-                        </div>
-                    ))}
-                </div>
-            )}
 
-            {/* Modal */}
+            <section>
+                <h3>In Progress</h3>
+                {inProgressBookings.length === 0 ? (
+                    <p>No in-progress bookings found.</p>
+                ) : (
+                    <div className="booking-cards-wrapper">
+                        {inProgressBookings.map(booking => (
+                            <div key={booking.bookingId} className="booking-card">
+                                <p><strong>Booking ID:</strong> {booking.bookingId}</p>
+                                <p><strong>Date:</strong> {booking.date}</p>
+                                <p><strong>Slot:</strong> {booking.slot}</p>
+                                <p><strong>Provider Id:</strong> {booking.providerId}</p>
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </section>
+            <div className="section-divider"><span>Completed Bookings</span></div>
+            <section>
+                <h3>Done</h3>
+                {doneBookings.length === 0 ? (
+                    <p>No completed bookings found.</p>
+                ) : (
+                    <div className="booking-cards-wrapper">
+                        {doneBookings.map(booking => (
+                            <div key={booking.bookingId} className="booking-card">
+                                <p><strong>Booking ID:</strong> {booking.bookingId}</p>
+                                <p><strong>Date:</strong> {booking.date}</p>
+                                <p><strong>Slot:</strong> {booking.slot}</p>
+                                <p><strong>Provider Id:</strong> {booking.providerId}</p>
+                                <button className="rate-btn" onClick={() => openModal(booking)}>
+                                    Rate & Review
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </section>
+
             {selectedBooking && (
                 <div className="modal-overlay">
                     <div className="modal-content">
@@ -85,8 +104,8 @@ const Bookings = () => {
                         </select>
 
                         <label>Review:</label>
-                        <textarea 
-                            value={review} 
+                        <textarea
+                            value={review}
                             onChange={(e) => setReview(e.target.value)}
                             placeholder="Write your review here..."
                         />
