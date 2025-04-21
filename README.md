@@ -1,16 +1,19 @@
 Below is an updated `README.md` file that covers both the frontend and backend parts of your "Work at Your Will" project. It includes an overview, technology stack, installation instructions, and details on both the React UI and Spring Boot API with MySQL.
 
 ```markdown
-# Work at Your Will
+# ServiceAtDesk
 
-"Work at Your Will" is a full-stack web application that allows clients to hire service providers based on the service they need. Clients can browse a list of services (such as Plumbing, Electrical, Cleaning, etc.), view a list of available providers for each service, and see detailed profiles (including ratings, reviews, and previous work). Clients can also book appointments with providers through the app.
+**ServiceAtDesk** is a full-stack web application that allows clients to find and book service providers for services such as Plumbing, Electrical work, Cleaning, Painting, and more. It features a user-friendly interface, detailed provider profiles, appointment bookings, and real-time chat functionality.
 
-## Features
+## 🌟 Features
 
-- **Services Listing:** Browse a list of services (e.g., Plumbing, Electrical, Cleaning, Painting, Gardening, etc.).
-- **Service Providers:** View a list of providers for each service.
-- **Provider Details:** Each provider has a detailed profile with ratings, reviews, previous work, and booking options.
-- **Appointment Booking:** Book an appointment by selecting a date and time slot.
+- **Browse Services:** View a list of available services (e.g., Plumbing, Cleaning, Electrical).
+- **View Providers:** Explore service providers with detailed profiles including ratings, previous work, and availability.
+- **Book Appointments:** Clients can book appointments by selecting date and time slots.
+- **Real-Time Chat:** Communicate instantly with service providers using WebSockets.
+- **Responsive UI:** Frontend built with React for a smooth user experience.
+- **RESTful APIs:** Backend built with Spring Boot and exposed via secure APIs.
+- **Persistent Data:** Service and provider data stored in MySQL.
 - **Full-Stack Architecture:** 
   - **Frontend:** Built with React.js and custom CSS.
   - **Backend:** Built with Spring Boot exposing REST APIs.
@@ -19,11 +22,11 @@ Below is an updated `README.md` file that covers both the frontend and backend p
 ## Tech Stack
 
 - **Frontend:** React.js, React Router, Custom CSS
-- **Backend:** Java Spring Boot, Spring Data JPA
+- **Backend:** Java Spring Boot, Spring Data JPA, WebSocket (Java)
 - **Database:** MySQL
-- **Build & Dependency Management:** Maven
-- **Deployment:** (e.g., GitHub Pages for frontend; cloud/server for backend)
-- **Version Control:** Git (hosted on GitHub, Bitbucket, etc.)
+- **Real-Time Messaging:** Java WebSockets
+- **Build Tools:** Maven
+- **Version Control:** Git (hosted on Bitbucket or GitHub)
 
 ## Prerequisites
 
@@ -95,6 +98,17 @@ Before running the project locally, ensure you have the following installed:
 
    The backend will start on [http://localhost:8080](http://localhost:8080) and expose APIs (e.g., `/api/services`).
 
+## 💬 Chat Feature (WebSocket)
+
+The application supports real-time chat using Java WebSockets. Once a user selects a service provider, a chat window opens to allow communication in real time.
+
+WebSocket endpoint: /ws-chat
+
+Built using Spring WebSocket with STOMP
+
+Chat messages are exchanged between users and providers for coordination
+
+
 ## Database Setup
 
 The backend uses a MySQL database. Use MySQL Workbench or a similar tool to run the provided SQL scripts to create the necessary tables and insert dummy data.
@@ -145,40 +159,30 @@ The backend uses a MySQL database. Use MySQL Workbench or a similar tool to run 
   
   ```
 
-## Project Structure
+## 📁 Project Structure
+Frontend
+components/
 
-```
-.
-├── public/
-├── src/
-│   ├── components/
-│   │   ├── Header/
-│   │   │   └── Header.js
-│   │   ├── Services/
-│   │   │   └── Services.js
-│   │   ├── ServiceProviders/
-│   │   │   └── ServiceProviders.js
-│   │   ├── ServiceProviderDetails/
-│   │   │   └── ServiceProviderDetails.js
-│   │   ├── Footer/
-│   │   │   └── Footer.js
-│   ├── App.js
-│   ├── App.css
-│   └── index.js
-├── service-your-desk-backend/  (Spring Boot backend)
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── com/example/serviceyourdesk/
-│   │   │   │       ├── ServiceAtYourDeskBackendApplication.java
-│   │   │   │       ├── controller/
-│   │   │   │       │   └── ServiceController.java
-│   │   │   │       └── model/
-│   │   │   │           └── ServiceEntity.java
-│   │   │   └── resources/
-│   │   │       └── application.properties
-│   └── pom.xml
-└── package.json
+context/
+
+App.js
+
+index.js
+
+Backend
+controller/
+
+model/
+
+repository/
+
+service/
+
+config/ (includes WebSocket config)
+
+application.properties
+
+
 ```
 
 ### Components Overview
@@ -216,18 +220,4 @@ The backend uses a MySQL database. Use MySQL Workbench or a similar tool to run 
 
 Contributions are welcome! Please fork the repository and create a pull request with your changes. Follow the coding guidelines and ensure your changes are well documented.
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-```
-
-### Explanation
-
-- **Overview:** Provides a full description of the project, including both frontend and backend details.
-- **Features & Tech Stack:** Lists what the application does and the technologies used.
-- **Installation:** Step-by-step instructions for setting up the frontend, backend, and database.
-- **Database Setup:** Includes SQL scripts to create and populate the services table.
-- **Project Structure:** Outlines the directory layout for both the React frontend and Spring Boot backend.
-- **Usage:** Explains how to run and test the application.
-- **Contributing & License:** Guidance for contributions and licensing.
 
