@@ -7,58 +7,67 @@ import jakarta.persistence.*;
 public class ProviderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer providerId;
+    private Long providerId;
 
-    @Column(name="service_id")
-    private Integer serviceId;
+    @Column(name = "service_id")
+    private Long serviceId;
 
-     @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 100)
     private String name;
-    
+
     @Column(length = 100)
     private String title;
-    
+
+    @Column(length = 100)
+    private String location;
+
     private Double rating;
-    
+
     @Column(name = "review_count")
     private Integer reviewCount;
-    
+
     @Column(length = 100)
     private String experience;
-    
+
     @Column(name = "hourly_rate")
     private Double hourlyRate;
-    
+
     @Column(length = 50)
     private String availability;
-    
+
     @Column(columnDefinition = "TEXT")
     private String description;
-    
+
     @Column(name = "previous_work", columnDefinition = "TEXT")
     private String previousWork;
 
     @Column(name = "rating_distribution", columnDefinition = "TEXT")
     private String ratingDistribution;
 
-
     public ProviderEntity() {
     }
 
-
-    public Integer getProviderId() {
+    public Long getProviderId() {
         return providerId;
     }
 
-    public void setProviderId(Integer providerId) {
+    public String getLocation(){
+        return location;
+    }
+
+    public void setLocation(String location){
+        this.location = location;
+    }
+    
+    public void setProviderId(Long providerId) {
         this.providerId = providerId;
     }
 
-    public Integer getServiceId() {
+    public Long getServiceId() {
         return serviceId;
     }
 
-    public void setServiceId(Integer serviceId) {
+    public void setServiceId(Long serviceId) {
         this.serviceId = serviceId;
     }
 

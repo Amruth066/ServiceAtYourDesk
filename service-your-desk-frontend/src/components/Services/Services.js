@@ -27,21 +27,25 @@ function Services() {
       .catch((error) => console.error("Error fetching services:", error));
   }, []);
 
-  const handleServiceClick = (serviceName) => {
-    navigate(`/service/${serviceName}`);
+  const handleServiceClick = (serviceName, serviceDescription) => {
+    sessionStorage.setItem("selectedDescription", serviceDescription);
+    navigate(`/service/${serviceName}`, {
+      state: { description: serviceDescription }
+    });
   };
+  
 
   return (
     <section className="services-section" id="services">
       <div className="services-container">
-      <TopRatedServiceProviders />
+        <TopRatedServiceProviders />
         <h2 className="section-title">All Services</h2>
         <div className="services-grid">
           {services.map((service, index) => (
             <div
               key={index}
               className="card"
-              onClick={() => handleServiceClick(service.name)}
+              onClick={() => handleServiceClick(service.name,service.description)}
             >
               <div className="card-icon">
                 {iconMapping[service.name] || service.name.charAt(0)}

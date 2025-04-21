@@ -10,6 +10,11 @@ function ServiceProviders() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const Description = sessionStorage.getItem("selectedDescription");
+  const description = Description;
+
+
+
   const serviceNameToIdMapping = {
     Plumbing: 1,
     Electrical: 2,
@@ -55,6 +60,7 @@ function ServiceProviders() {
   return (
     <div className="providers-container">
       <h2 className="title">Service Providers for {serviceName}</h2>
+      <p className="description">{description ? description : "No description available."}</p>
       <button className="back-button" onClick={() => navigate(-1)}>
         ← Back to Services
       </button>

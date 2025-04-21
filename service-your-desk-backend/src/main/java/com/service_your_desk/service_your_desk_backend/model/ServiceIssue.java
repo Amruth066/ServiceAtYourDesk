@@ -51,7 +51,7 @@ public class ServiceIssue {
         this.issueName = issueName;
     }
 
-    public Integer getServiceId() { // Added serviceId for frontend
+    public Long getServiceId() { 
         return service != null ? service.getServiceId() : null;
     }
 

@@ -16,6 +16,7 @@ import ServiceProviderSignIn from "./components/ServiceProviderSignIn/ServicePro
 import "./App.css";
 import { UserContext, UserProvider } from "./context/UserContext";
 import Messenger from "./components/Messenger/Messenger";
+import {DataProvider} from './context/DataContext'
 function AppContent() {
 
   return (
@@ -32,7 +33,7 @@ function AppContent() {
         <Route path="/service/:serviceName" element={<ProtectedRoute element={<ServiceProviders />} />} />
         <Route path="/provider/:providerId" element={<ProtectedRoute element={<ServiceProviderDetails />} />} />
         <Route path="/bookings" element={<ProtectedRoute element={<Bookings />} />} />
-        <Route path="/messages" element={<Messenger/>}/>
+        <Route path="/messages" element={<Messenger />} />
         <Route path="/serviceProviderBookings" element={<ServiceProviderBookings />} />
         <Route path="/serviceProviderProfile" element={<ServiceProviderProfile />} />
       </Routes>
@@ -44,9 +45,11 @@ function AppContent() {
 function App() {
   return (
     <Router>
-      <UserProvider>
-        <AppContent />
-      </UserProvider>
+      <DataProvider>
+        <UserProvider>
+          <AppContent />
+        </UserProvider>
+      </DataProvider>
     </Router>
   );
 }
