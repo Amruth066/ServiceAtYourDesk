@@ -14,7 +14,7 @@ function Navigation() {
   return (
     <nav className="navbar">
       <div className="nav-container">
-        <div className="logo">logo</div>
+        <div className="logo">ServiceAtDesk</div>
         <div className="nav-links">
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/services" className="nav-link">Services</Link>
@@ -23,7 +23,9 @@ function Navigation() {
 
           {user ? (
             <div className="nav-link user-info">
-              <span>Hi, {user.name}</span>
+              <span>
+                Hi, <span className="username-highlight">{user.name}</span>
+              </span>
               {/* <button className="button-secondary" onClick={handleLogout}>Logout</button> */}
               <Link className="nav-link" onClick={handleLogout}>Logout</Link>
             </div>

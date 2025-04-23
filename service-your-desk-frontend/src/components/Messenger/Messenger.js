@@ -12,7 +12,9 @@ function Messenger() {
   const [loading, setLoading] = useState(false);
 
   const { user } = useContext(UserContext);
-  const currentUser = user?.username || "you";
+  const currentUser = user?.name || "you";
+
+  console.log(currentUser)
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -196,7 +198,7 @@ function Messenger() {
                       variants={messageVariants}
                       transition={{ duration: 0.3 }}
                     >
-                      <strong>{message.sender}:</strong> {message.content}
+                      <strong>You:</strong> {message.content}
                       <div className="message-timestamp">
                         {new Date(message.timestamp).toLocaleTimeString()}
                       </div>

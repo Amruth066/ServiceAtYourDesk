@@ -8,11 +8,16 @@ import java.util.Optional;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "http://localhost:3000") // Allow frontend to access backend
+@CrossOrigin(origins = "*") 
 public class AuthController {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); // Add this
+
 
     public AuthController(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -24,7 +29,7 @@ public class AuthController {
             return ResponseEntity.badRequest().body(Map.of("message", "Email already in use"));
         }
 
-        user.setPassword(user.getPassword()); // Ideally, hash passwords
+        user.setPassword(passwordEncoder.encode(user.getPassword())); 
         userRepository.save(user);
         return ResponseEntity.ok(Map.of("message", "User registered successfully"));
     }
@@ -33,7 +38,7 @@ public class AuthController {
     public ResponseEntity<?> login(@RequestBody Map<String, String> loginData) {
         Optional<UserEntity> userOpt = userRepository.findByEmail(loginData.get("email"));
 
-        if (userOpt.isEmpty() || !userOpt.get().getPassword().equals(loginData.get("password"))) {
+        if (userOpt.isEmpty() || !passwordEncoder.matches(loginData.get("password"), userOpt.get().getPassword())) {
             return ResponseEntity.status(401).body(Map.of("message", "Invalid credentials"));
         }
 

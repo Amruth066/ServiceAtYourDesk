@@ -36,6 +36,7 @@ const Auth = () => {
             if (isLogin) {
                 localStorage.setItem("user", JSON.stringify(data));
                 setUser(data); // this updates the navbar
+                console.log(data)
                 toast.success("Login successful!", {
                     position: "top-right",
                     autoClose: 3000,

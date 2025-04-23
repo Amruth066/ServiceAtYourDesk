@@ -24,4 +24,9 @@ public class ChatService {
     public List<String> getAllChatPartners(String sender) {
         return chatMessageRepository.findAllChatPartners(sender);
     }
+
+    public void deleteAllMessages() {
+        chatMessageRepository.deleteAll();
+    }
+    
 }

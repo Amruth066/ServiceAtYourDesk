@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Bookings.css";
+import { UserContext } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
+
 
 const Bookings = () => {
     const [bookings, setBookings] = useState([]);
@@ -8,6 +11,8 @@ const Bookings = () => {
     const [selectedBooking, setSelectedBooking] = useState(null);
     const [rating, setRating] = useState(5);
     const [review, setReview] = useState("");
+    const {user,setUser} = useContext(UserContext)
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch("http://localhost:8080/api/bookings")
@@ -29,6 +34,49 @@ const Bookings = () => {
     const openModal = (booking) => {
         setSelectedBooking(booking);
     };
+
+    const handleChatNow = async (booking) => {
+        try {
+            const providerResponse = await fetch(`http://localhost:8080/api/providers/${booking.providerId}`);
+            if (!providerResponse.ok) throw new Error("Failed to fetch provider details");
+    
+            const providerData = await providerResponse.json();
+            const providerName = providerData.name;
+
+            console.log(providerData)
+    
+            const senderName = user.name
+    
+            const messagePayload = {
+                sender: senderName,
+                receiver: providerName,
+                content: "Hi, I'd like to chat about the booking.",
+                type: "text",
+                timestamp: new Date().toISOString()
+            };
+    
+            const chatResponse = await fetch("http://localhost:8080/chat/send", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(messagePayload)
+            });
+    
+            if (!chatResponse.ok) throw new Error("Failed to send chat message");
+    
+            const chatResult = await chatResponse.json();
+            console.log("Message sent:", chatResult);
+            alert("Chat initiated!");
+    
+        } catch (error) {
+            console.error("Error in chat initiation:", error);
+            alert("Could not start chat.");
+        }
+        navigate('/messages')
+    };
+    
+
 
     const closeModal = () => {
         setSelectedBooking(null);
@@ -63,6 +111,13 @@ const Bookings = () => {
                                 <p><strong>Date:</strong> {booking.date}</p>
                                 <p><strong>Slot:</strong> {booking.slot}</p>
                                 <p><strong>Provider Id:</strong> {booking.providerId}</p>
+                                <button
+                                    className="chat-btn"
+                                    onClick={() => handleChatNow(booking)}
+                                >
+                                    Chat Now
+                                </button>
+
                             </div>
                         ))}
                     </div>

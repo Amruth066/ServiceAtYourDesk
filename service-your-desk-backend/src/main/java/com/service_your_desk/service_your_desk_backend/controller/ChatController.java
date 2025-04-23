@@ -28,9 +28,16 @@ public class ChatController {
     public List<ChatMessage> getHistory(@RequestParam String sender, @RequestParam String receiver) {
         return chatService.getChatHistory(sender, receiver);
     }
-    
+
     @GetMapping("/partners")
     public ResponseEntity<List<String>> getChatPartners(@RequestParam String sender) {
         return ResponseEntity.ok(chatService.getAllChatPartners(sender));
     }
+
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<String> deleteAllMessages() {
+        chatService.deleteAllMessages();
+        return ResponseEntity.ok("All chat messages have been deleted.");
+    }
+
 }

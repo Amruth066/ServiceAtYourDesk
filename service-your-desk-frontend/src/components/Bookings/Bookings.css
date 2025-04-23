@@ -17,6 +17,20 @@
     margin-bottom: 5px;
 }
 
+.chat-btn {
+    margin-top: 10px;
+    padding: 6px 12px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.chat-btn:hover {
+    background-color: blue;
+}
+
+
 .chat-message.sent {
     text-align: right;
     color: blue;

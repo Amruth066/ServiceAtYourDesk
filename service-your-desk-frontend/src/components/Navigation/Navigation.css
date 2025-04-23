@@ -16,6 +16,10 @@
     font-family: "Pacifico", cursive;
     color: #4F46E5;
   }
+  .username-highlight{
+    color: #4F46E5;
+    font-weight: bold;
+  }
   .user-info {
     display: flex;
     align-items: center;
@@ -29,7 +33,7 @@
     cursor: pointer;
   }
   
-.nav-link:hover .messenger-icon {
+.nav-link:hover{
   color: #4F46E5;
   transform: scale(1.1);
 }
