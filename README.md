@@ -26,7 +26,7 @@ Below is an updated `README.md` file that covers both the frontend and backend p
 - **Database:** MySQL
 - **Real-Time Messaging:** Java WebSockets
 - **Build Tools:** Maven
-- **Version Control:** Git (hosted on Bitbucket or GitHub)
+- **Version Control:** Git
 
 ## Prerequisites
 
