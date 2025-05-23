@@ -64,3 +64,50 @@ function Services() {
 }
 
 export default Services;
+
+
+// function Services() {
+//   const navigate = useNavigate();
+//   const { data, isLoading, error } = useContext(DataContext);
+
+//   if (isLoading) return <p>Loading services...</p>;
+//   if (error) return <p>Error loading services: {error}</p>;
+
+//   const services = data?.services || [];
+
+//   const handleServiceClick = (serviceName, serviceDescription) => {
+//     sessionStorage.setItem("selectedDescription", serviceDescription);
+//     navigate(`/service/${serviceName}`, {
+//       state: { description: serviceDescription }
+//     });
+//   };
+
+//   return (
+//     <section className="services-section" id="services">
+//       <div className="services-container">
+//         <TopRatedServiceProviders />
+//         <h2 className="section-title">All Services</h2>
+//         <div className="services-grid">
+//           {services.map((service) => (
+//             <div
+//               key={service.serviceId}
+//               className="card"
+//               onClick={() => handleServiceClick(service.serviceName, service.description)}
+//             >
+//               <div className="card-icon">
+//                 {iconMapping[service.serviceName] || service.serviceName.charAt(0)}
+//               </div>
+//               <h3 className="card-title">{service.serviceName}</h3>
+//               <p className="card-subtitle">
+//                 {service.basePrice ? `From $${service.basePrice}/hour` : ""}
+//               </p>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//       <br />
+//     </section>
+//   );
+// }
+
+// export default Services;
